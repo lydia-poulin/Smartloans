@@ -1,0 +1,61 @@
+Options +FollowSymlinks
+RewriteEngine On
+
+# deal with admin first
+RewriteCond %{REQUEST_URI} ^/smartloans/(admin)
+RewriteRule ^admin/assets/(.*)$ backend/web/assets/$1 [L]
+RewriteRule ^admin/css/(.*)$ backend/web/css/$1 [L]
+RewriteRule ^admin/js/(.*)$ backend/web/js/$1 [L]
+RewriteRule ^admin/themes/css/(.*)$ backend/web/themes/css/$1 [L]
+RewriteRule ^admin/themes/js/(.*)$ backend/web/themes/js/$1 [L]
+RewriteRule ^admin/themes/fonts/(.*)$ backend/web/themes/fonts/$1 [L]
+RewriteRule ^admin/themes/img/(.*)$ backend/web/themes/img/$1 [L]
+RewriteRule ^admin/themes/icons/(.*)$ backend/web/themes/icons/$1 [L]
+RewriteRule ^admin/uploads/(.*)$ backend/web/uploads/$1 [L]
+RewriteRule ^admin/images/(.*)$ backend/web/images/$1 [L]
+RewriteRule ^admin/icons/(.*)$ backend/web/icons/$1 [L]
+
+RewriteRule ^themes/css/(.*)$ frontend/web/themes/css/$1 [L]
+RewriteRule ^themes/js/(.*)$ frontend/web/themes/js/$1 [L]
+RewriteRule ^themes/fonts/(.*)$ frontend/web/themes/fonts/$1 [L]
+
+
+RewriteRule ^images/(.*)$ frontend/web/images/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/(assets|css)/ 
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/(assets|js)/ 
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/themes/(assets|js)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/themes/(assets|img)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/themes/(assets|icons)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/themes/(assets|css)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/themes/(assets|fonts)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/(assets|uploads)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/(assets|images)/
+RewriteCond %{REQUEST_URI} !^/smartloans/backend/web/(assets|icons)/
+RewriteCond %{REQUEST_URI} ^/smartloans/(admin) 
+RewriteRule ^.*$ backend/web/index.php [L]
+
+
+RewriteCond %{REQUEST_URI} ^/smartloans/(assets|css)/
+RewriteCond %{REQUEST_URI} !^/smartloans/frontend/web/(assets|images)/
+RewriteCond %{REQUEST_URI} !^/smartloans/frontend/web/themes/(assets|js)/
+RewriteCond %{REQUEST_URI} !^/smartloans/frontend/web/themes/(assets|css)/
+RewriteCond %{REQUEST_URI} !^/smartloans/frontend/web/themes/(assets|fonts)/
+RewriteRule ^assets/(.*)$ frontend/web/assets/$1 [L]
+RewriteRule ^css/(.*)$ frontend/web/css/$1 [L]
+
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|css)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|js)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/themes/(assets|js)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/themes/(assets|css)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/themes/(assets|fonts)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/themes/(assets|icons)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|uploads)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|images)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|icons)/
+RewriteCond %{REQUEST_URI} !^/smartloans/(frontend|backend)/web/(assets|img)/
+RewriteCond %{REQUEST_URI} !index.php
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ frontend/web/index.php [L]
+
